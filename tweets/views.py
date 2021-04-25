@@ -1,4 +1,4 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render
 
 from .models import Tweet
@@ -9,8 +9,20 @@ def home_view(request, *args, **kwargs):
 
 
 def tweet_detail_view(request, tweet_id, *args, **kwargs):
+    """
+    REST API VIEW
+    Consume by JavaScript / Swift / iOS / Android
+    return Json data
+    """
+    data = {
+        'id': tweet_id,
+    }
+    status = 200
     try:
         tweet = Tweet.objects.get(id=tweet_id)
+        data.update({'content': tweet.content})
     except:
-        raise Http404
-    return HttpResponse(f"<h1>Hello {tweet_id} - {tweet.content} - {tweet.image}</h1>")
+        data.update({'message': 'Not found'})
+        status = 404
+
+    return JsonResponse(data, status=status)
