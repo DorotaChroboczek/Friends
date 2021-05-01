@@ -8,7 +8,19 @@
 {% block content %}
 Welcome to Friends!
 
+<div id="tweets">
+    Replace me
+</div>
+
 <script type="text/javascript">
+    const tweetsElement = document.getElementById('tweets')
+    tweetsElement.innerHTML = 'Loading...'
+
+    var el1 = '<h1>Hi 1</h1>'
+    var el2 = '<h1>Hi 2</h1>'
+    var el3 = '<h1>Hi 3</h1>'
+    tweetsElement.innerHTML = el1 + el2 + el3
+
     const xhr = new XMLHttpRequest()
     const method = 'GET'
     const url = '/tweets'
