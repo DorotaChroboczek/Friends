@@ -11,7 +11,7 @@ def home_view(request, *args, **kwargs):
 def tweet_list_view(request, *args, **kwargs):
     """
     REST API VIEW
-    Consume by JS or Swift/Java/iOS/Android
+    Consumed by JS or Swift/Java/iOS/Android
     return Json data
     """
     qs = Tweet.objects.all()
@@ -25,7 +25,7 @@ def tweet_list_view(request, *args, **kwargs):
 def tweet_detail_view(request, tweet_id, *args, **kwargs):
     """
     REST API VIEW
-    Consume by JavaScript / Swift / iOS / Android
+    Consumed by JavaScript / Swift / iOS / Android
     return Json data
     """
     data = {
