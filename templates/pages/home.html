@@ -6,9 +6,13 @@
 
 
 {% block content %}
-Welcome to Friends!
+<div class="row text-center">
+    <div class="col welcome">
+        <h3>Welcome to Friends!</h3>
+    </div>
+</div>
 
-<div id="tweets">
+<div class="row tweets-list" id="tweets">
     Loading...
 </div>
 
@@ -37,7 +41,7 @@ Welcome to Friends!
     }
 
     function formatTweetElement(tweet) {
-        var formattedTweet = "<div class='mb-4 tweet' id='tweet-" + tweet.id
+        var formattedTweet = "<div class='col-12 col-md-10 mx-auto border rounded py-3 mb-4 tweet' id='tweet-" + tweet.id
             + "'><p>" + tweet.content
             + "</p><div class='btn-group'>" + LikeBtn(tweet) +
             "</div></div>"
