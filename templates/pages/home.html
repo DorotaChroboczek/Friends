@@ -9,17 +9,18 @@
 Welcome to Friends!
 
 <div id="tweets">
-    Replace me
+    Loading...
 </div>
 
 <script type="text/javascript">
     const tweetsElement = document.getElementById('tweets')
-    tweetsElement.innerHTML = 'Loading...'
 
-    var el1 = '<h1>Hi 1</h1>'
-    var el2 = '<h1>Hi 2</h1>'
-    var el3 = '<h1>Hi 3</h1>'
-    tweetsElement.innerHTML = el1 + el2 + el3
+    // tweetsElement.innerHTML = 'Loading...'
+    //
+    // var el1 = '<h1>Hi 1</h1>'
+    // var el2 = '<h1>Hi 2</h1>'
+    // var el3 = '<h1>Hi 3</h1>'
+    // tweetsElement.innerHTML = el1 + el2 + el3
 
     const xhr = new XMLHttpRequest()
     const method = 'GET'
@@ -31,8 +32,17 @@ Welcome to Friends!
     xhr.onload = function () {
         // console.log(xhr.response)
         const serverResponse = xhr.response
-        var listedItems = serverResponse.response
-        console.log(listedItems)
+        const listedItems = serverResponse.response
+        var finalTweetStr = ''
+        var i;
+        for (i=0; i<listedItems.length; i++) {
+            console.log(i)
+            console.log(listedItems[i])
+            var currentItem = '<div class="mb-4"><h1>' + listedItems[i].id + '</h1>' + '<p>' + listedItems[i].content + '</p></div>'
+                finalTweetStr += currentItem
+        }
+        tweetsElement.innerHTML = finalTweetStr
+        // console.log(listedItems)
     }
     xhr.send()
 </script>
