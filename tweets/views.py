@@ -17,8 +17,10 @@ def home_view(request, *args, **kwargs):
 
 def tweet_create_view(request, *args, **kwargs):
     # print('ajax', request.is_ajax())
+    print(abc)
     form = TweetFrom(request.POST or None)
     next_url = request.POST.get('next') or None
+
     if form.is_valid():
         obj = form.save(commit=False)
         obj.save()
@@ -28,7 +30,13 @@ def tweet_create_view(request, *args, **kwargs):
 
         if next_url is not None and is_safe_url(next_url, ALLOWED_HOSTS):
             return redirect(next_url)
+
         form = TweetFrom()
+
+    if form.errors:
+        if request.is_ajax():
+            return JsonResponse(form.errors, status=400)
+
     return render(request, 'components/form.html', context={'form': form})
 
 
