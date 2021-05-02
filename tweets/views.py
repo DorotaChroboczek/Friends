@@ -38,7 +38,7 @@ def tweet_list_view(request, *args, **kwargs):
     Consumed by JS or Swift/Java/iOS/Android
     return Json data
     """
-    qs = Tweet.objects.all()
+    qs = Tweet.objects.all().order_by('-id')
     tweets_list = [{'id': x.id, 'content': x.content, 'likes': random.randint(0, 999)} for x in qs]
     data = {
         'isUser': False,
