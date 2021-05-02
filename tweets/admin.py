@@ -5,4 +5,5 @@ from .models import Tweet
 
 @admin.register(Tweet)
 class TweetAdmin(admin.ModelAdmin):
-    list_display = ('content', 'image')
+    list_display = ('user', 'content', 'image')
+    search_fields = ['user__username', 'user__email']
