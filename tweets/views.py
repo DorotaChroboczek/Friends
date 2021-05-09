@@ -16,6 +16,9 @@ def home_view(request, *args, **kwargs):
 
 
 def tweet_create_view(request, *args, **kwargs):
+    """
+    REST API Create VIEW -> DRF
+    """
     # print('ajax', request.is_ajax())
     # print(request.user)
     user = request.user
